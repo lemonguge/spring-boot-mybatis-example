@@ -15,6 +15,8 @@
  */
 package cn.homjie.boot.start.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,6 +35,14 @@ public class CityDao {
 	public City selectCityById(long id) {
 		// 完全限定名，将被直接查找并且找到即用
 		return this.sqlSession.selectOne("CityMapper.selectCityById", id);
+	}
+
+	public List<City> selectAll() {
+		return this.sqlSession.selectList("CityMapper.selectAllCity");
+	}
+
+	public long insertCity(City city) {
+		return this.sqlSession.insert("CityMapper.insert", city);
 	}
 
 }
